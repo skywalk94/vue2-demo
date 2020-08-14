@@ -5,7 +5,7 @@ let sign;
 if (process.env.NODE_ENV === "production") {
   sign = localStorage.getItem("wx_sign");
 } else {
-  sign = "17a1920fdc3c3c25d1bf7c6dd724f5cf";
+  sign = "wxsign";
 }
 
 const post = (url, data) => http.post(url, Object.assign({
@@ -22,21 +22,23 @@ const get = (url, data) => http.get(url, Object.assign({
   data
 ));
 
-/**
- * 四大学院
- * @param {*}
- */
-const getClassSchedule = ({
-    schedule_id,
+const getCarouselList = ({
     page,
     limit
   }) =>
-  post("getClassSchedule", {
-    schedule_id,
+  post("getCarouselList", {
     page,
     limit
   });
 
+const getChapterList = id => post("getChapterList", {
+  id
+});
+
+const getUserInfo = () => post("getUserInfo", {});
+
 export {
-  getClassSchedule
+  getCarouselList,
+  getChapterList,
+  getUserInfo
 };

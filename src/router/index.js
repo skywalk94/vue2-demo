@@ -9,30 +9,39 @@ import {
 } from "vant";
 
 const routes = [{
-  path: '*',
-  redirect: '/',
-}, {
-  path: '/',
-  name: 'index',
-  component: () => import( /* webpackChunkName: "index" */ '../views/index.vue'),
-  meta: {
-    title: '首页'
+    path: '*',
+    redirect: '/',
+  },
+  {
+    path: '/',
+    name: 'index',
+    component: () => import( /* webpackChunkName: "index" */ '../views/index.vue'),
+    meta: {
+      title: '首页'
+    }
+  }, {
+    path: '/learn',
+    name: 'learn',
+    component: () => import( /* webpackChunkName: "learn" */ '../views/learn.vue'),
+    meta: {
+      title: '学习'
+    }
+  }, {
+    path: '/person',
+    name: 'person',
+    component: () => import( /* webpackChunkName: "person" */ '../views/person.vue'),
+    meta: {
+      title: '我的'
+    }
+  }, {
+    path: '/detail',
+    name: 'detail',
+    component: () => import( /* webpackChunkName: "detail" */ '../views/detail.vue'),
+    meta: {
+      title: '详情'
+    }
   }
-}, {
-  path: '/learn',
-  name: 'learn',
-  component: () => import( /* webpackChunkName: "learn" */ '../views/learn.vue'),
-  meta: {
-    title: '学习'
-  }
-}, {
-  path: '/person',
-  name: 'person',
-  component: () => import( /* webpackChunkName: "person" */ '../views/person.vue'),
-  meta: {
-    title: '我的'
-  }
-}]
+]
 
 const router = new VueRouter({
   routes
@@ -49,18 +58,13 @@ function getCode() {
   return code;
 }
 
-// 获取sign
+// code->获取后端返回的凭证sign
 function getSign(next) {
   let theCode = getCode();
   if (theCode) {
     var formData = new FormData();
-    formData.append("api_key", "xxxx");
+    formData.append("api_key", "xxx");
     formData.append("origin", 1);
-    if (process.env.VUE_APP_MODE == "test") {
-      formData.append("type", 2);
-    } else {
-      formData.append("type", 1);
-    }
     formData.append("code", theCode);
     axios({
       method: "post",
@@ -75,11 +79,9 @@ function getSign(next) {
       } else {
         Dialog.alert({
           title: '提示',
-          message: res.data.msg + "code=" + theCode,
+          message: res.data.msg,
         }).then(() => {
-          localStorage.setItem("wx_sign", "123");
-          window.location.href = realUrl + '#/login';
-          next()
+          WeixinJSBridge.call('closeWindow');
         })
       }
     });

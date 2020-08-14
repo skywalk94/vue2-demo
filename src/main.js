@@ -11,8 +11,9 @@ import 'lib-flexible/flexible'
 import {
   Tabbar,
   TabbarItem,
+  Button
 } from "vant";
-Vue.use(Tabbar).use(TabbarItem);
+Vue.use(Tabbar).use(TabbarItem).use(Button);
 
 Vue.prototype.https = https;
 Vue.prototype.$axios = axios;
