@@ -7,7 +7,8 @@ import https from "./axios/http";
 import wechatAuth from "./common/wechatAuth";
 
 import 'lib-flexible/flexible'
-
+import DrawerLayout from 'vue-drawer-layout'
+Vue.use(DrawerLayout)
 import {
   Tabbar,
   TabbarItem,
