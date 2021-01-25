@@ -2,14 +2,29 @@
   <div
     v-if="
       $route.name == 'index' ||
-        $route.name == 'learn' ||
-        $route.name == 'person'
-        "
+      $route.name == 'learn' ||
+      $route.name == 'person'
+    "
   >
-    <van-tabbar v-model="active" inactive-color="#666666" active-color="#000000" fixed placeholder>
-      <van-tabbar-item replace v-for="(item, index) in tabbarList" :key="index" :to="item.path">
+    <van-tabbar
+      v-model="active"
+      inactive-color="#666666"
+      active-color="#000000"
+      fixed
+      placeholder
+    >
+      <van-tabbar-item
+        replace
+        v-for="(item, index) in tabbarList"
+        :key="index"
+        :to="item.path"
+      >
         <span>{{ item.title }}</span>
-        <img slot="icon" slot-scope="props" :src="props.active ? item.active : item.normal" />
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active ? item.active : item.normal"
+        />
       </van-tabbar-item>
     </van-tabbar>
   </div>

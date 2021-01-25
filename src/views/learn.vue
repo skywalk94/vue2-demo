@@ -1,19 +1,25 @@
 <template>
-  <div class="box">
-    <iframe src="https://blog.csdn.net/AK852369" frameborder="0" scrolling="auto"></iframe>
-  </div>
+  <div></div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {};
-  },
-};
+  import {
+    mixin
+  } from "../mixins";
+  export default {
+    mixins: [mixin],
+    data() {
+      return {};
+    },
+    mounted() {
+      this.$loading.show("数据加载中")
+      setTimeout(() => {
+        this.$loading.hide()
+      }, 2000)
+      console.log(this.mixinData); //这是来自mixin的值
+      this.mixinFunction(); //这是来自mixin的方法
+    },
+  };
 </script>
 <style lang="less" scoped>
-iframe {
-  width: 100%;
-  min-height: 100vh;
-}
 </style>

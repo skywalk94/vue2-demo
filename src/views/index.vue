@@ -12,34 +12,27 @@
 </template>
 
 <script>
-import { getCarouselList } from "../axios/request";
-export default {
-  data() {
-    return {};
-  },
+  export default {
+    data() {
+      return {};
+    },
 
-  mounted() {},
+    mounted() {},
 
-  methods: {
-    async getApi() {
-      const res = await getCarouselList({ page: 1, limit: 10 });
-      if (res.status == 1) {
-        this.bannerList = res.data;
-      }
+    methods: {
+      openMenu() {
+        this.$refs.drawerLayout.toggle();
+      },
+      closeMenu() {
+        this.$refs.drawerLayout.toggle(false);
+      },
     },
-    openMenu() {
-      this.$refs.drawerLayout.toggle();
-    },
-    closeMenu() {
-      this.$refs.drawerLayout.toggle(false);
-    },
-  },
-};
+  };
 </script>
 <style lang="less" scoped>
-.drawer {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-}
+  .drawer {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+  }
 </style>
