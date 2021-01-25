@@ -6,8 +6,5 @@
 ##### 运行
 >npm run serve
 
-##### 打包上传测试环境
->npm run test
-
-##### 打包上传正式环境
+##### 打包
 >npm run build
