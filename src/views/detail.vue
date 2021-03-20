@@ -1,13 +1,17 @@
 <template>
-  <h1>详情页</h1>
+  <div>
+    <navbar></navbar>
+  </div>
 </template>
 
 <script>
+import navbar from "../components/navbar";
 export default {
-  data() {
-    return {};
+  components: {
+    navbar,
+  },
+  provide: {
+    title: "详情标题",
   },
 };
 </script>
-<style lang="less" scoped>
-</style>
