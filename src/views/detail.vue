@@ -1,6 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
+    <button @click="changeTitle()">改变title值</button>
   </div>
 </template>
 
@@ -10,8 +11,21 @@ export default {
   components: {
     navbar,
   },
-  provide: {
-    title: "详情标题",
+  data() {
+    return {
+      title: "详情标题",
+    };
+  },
+  provide() {
+    return {
+      title: this.title,
+    };
+  },
+  methods: {
+    changeTitle() {
+      // 无法实现响应式
+      this.title = "xxxx";
+    },
   },
 };
 </script>
